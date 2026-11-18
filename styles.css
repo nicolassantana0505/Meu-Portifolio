@@ -1,0 +1,21 @@
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.contact-image {
+  flex-shrink: 0;
+}
+
+.contact-image img {
+  width: 190px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 2px solid var(--accent);
+}
+
+.contact-content {
+  flex: 1;
+}

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de Nicolas Sant'Ana — estudante de Análise e Desenvolvimento de Sistemas e desenvolvedor Full Stack em formação.">
+  <title>Nicolas Sant'Ana | Desenvolvedor em formação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090b12; --panel: #111521; --panel2: #151b2a;
+      --text: #f3f5fb; --muted: #9ba5b8; --line: #252d40;
+      --accent: #8b7cff; --cyan: #54d6d0; --max: 1120px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: Manrope, sans-serif; line-height: 1.65; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 44px)); margin: auto; }
+    .topbar { position: sticky; top: 0; z-index: 10; background: rgba(9,11,18,.82); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.07); }
+    nav { height: 74px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { font-weight: 800; letter-spacing: -.06em; font-size: 1.15rem; }
+    .brand span { color: var(--accent); }
+    .navlinks { display: flex; gap: 28px; color: var(--muted); font-size: .88rem; }
+    .navlinks a:hover, .text-link:hover { color: var(--cyan); }
+    .menu { display: none; border: 1px solid var(--line); background: var(--panel); color: white; padding: 8px 12px; border-radius: 8px; }
+    .hero { min-height: 690px; display: grid; grid-template-columns: 1.25fr .75fr; align-items: center; gap: 56px; padding: 90px 0 100px; }
+    .eyebrow { color: var(--cyan); font: 500 .78rem 'DM Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { font-size: clamp(2.8rem, 6vw, 5.3rem); line-height: 1.04; letter-spacing: -.075em; margin: 22px 0; }
+    h1 .gradient { background: linear-gradient(100deg, var(--accent), var(--cyan)); -webkit-background-clip: text; color: transparent; }
+    .intro { max-width: 650px; color: var(--muted); font-size: 1.08rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 19px; border-radius: 9px; font-weight: 700; font-size: .9rem; transition: .2s; }
+    .primary { background: var(--accent); color: #090b12; }
+    .primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px #8b7cff40; }
+    .secondary { border: 1px solid var(--line); color: var(--text); }
+    .secondary:hover { border-color: var(--cyan); color: var(--cyan); }
+    .hero-card { background: radial-gradient(circle at 80% 10%, #38315f 0, transparent 42%), var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 28px; box-shadow: 0 25px 80px #0005; transform: rotate(2deg); }
+    .terminal-top { display: flex; gap: 7px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: #ff6f75; } .dot:nth-child(2) { background: #ffc45c; } .dot:nth-child(3) { background: #55d69a; }
+    .code { font: .88rem/2 'DM Mono', monospace; color: var(--muted); padding-top: 22px; }
+    .code .purple { color: #b5aaff; } .code .green { color: var(--cyan); } .code .white { color: #f3f5fb; }
+    section { padding: 88px 0; border-top: 1px solid rgba(255,255,255,.06); }
+    .section-head { margin-bottom: 34px; }
+    .section-head h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.06em; margin-top: 9px; }
+    .section-head p { color: var(--muted); max-width: 650px; margin-top: 9px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 27px; }
+    .panel p { color: var(--muted); }
+    .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .fact { background: var(--panel2); padding: 17px; border-radius: 11px; }
+    .fact strong { display: block; font-size: .92rem; } .fact span { color: var(--muted); font-size: .8rem; }
+    .skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .skill { background: var(--panel); border: 1px solid var(--line); border-radius: 13px; padding: 19px; }
+    .skill b { display: block; margin-bottom: 5px; } .skill small { color: var(--muted); }
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .project { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 25px; display: flex; flex-direction: column; min-height: 250px; }
+    .project .tag { color: var(--cyan); font: .72rem 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .project h3 { font-size: 1.25rem; margin: 12px 0 8px; }
+    .project p { color: var(--muted); font-size: .92rem; flex: 1; }
+    .project a { margin-top: 20px; color: var(--cyan); font-weight: 700; font-size: .88rem; }
+    .timeline { display: grid; gap: 14px; }
+    .timeline-item { display: grid; grid-template-columns: 170px 1fr; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .timeline-item time { color: var(--cyan); font: .78rem 'DM Mono', monospace; }
+    .timeline-item p { color: var(--muted); font-size: .92rem; margin-top: 4px; }
+    .contact { background: linear-gradient(135deg, #17162b, #101a24); border: 1px solid var(--line); border-radius: 20px; padding: clamp(26px, 5vw, 54px); display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .contact h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); letter-spacing: -.06em; }
+    .contact p { color: var(--muted); margin-top: 8px; max-width: 570px; }
+    footer { padding: 28px 0; color: var(--muted); font-size: .82rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s, transform .6s; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 75px 0; gap: 40px; }
+      .hero-card { max-width: 500px; transform: none; }
+      .skills { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: min(100% - 32px, var(--max)); }
+      .navlinks { display: none; position: absolute; top: 73px; left: 0; right: 0; padding: 20px; background: var(--panel); flex-direction: column; gap: 16px; border-bottom: 1px solid var(--line); }
+      .navlinks.open { display: flex; } .menu { display: block; }
+      section { padding: 66px 0; }
+      .projects { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 5px; }
+      .contact { align-items: flex-start; flex-direction: column; }
+      .facts { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="wrap">
+      <a class="brand" href="#inicio">N<span>.</span>S</a>
+      <button class="menu" id="menu" aria-label="Abrir menu">Menu</button>
+      <div class="navlinks" id="navlinks">
+        <a href="#sobre">Sobre</a><a href="#habilidades">Habilidades</a><a href="#projetos">Projetos</a><a href="#trajetoria">Trajetória</a><a href="#contato">Contato</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="hero" id="inicio" style="border:0">
+        <div>
+          <div class="eyebrow">Olá, mundo! Meu nome é Nicolas</div>
+          <h1>Construindo o próximo passo da minha <span class="gradient">jornada tech.</span></h1>
+          <p class="intro">Sou estudante de Análise e Desenvolvimento de Sistemas e desenvolvedor Full Stack em formação. Gosto de transformar ideias em aplicações, aprender na prática e evoluir a cada projeto.</p>
+          <div class="actions">
+            <a class="btn primary" href="#projetos">Ver meus projetos ↗</a>
+            <a class="btn secondary" href="#contato">Vamos conversar</a>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="Trecho ilustrativo de código">
+          <div class="terminal-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+          <div class="code">
+            <div><span class="purple">const</span> desenvolvedor = {</div>
+            <div>&nbsp;&nbsp;nome: <span class="green">'Nicolas'</span>,</div>
+            <div>&nbsp;&nbsp;foco: <span class="green">'Full Stack'</span>,</div>
+            <div>&nbsp;&nbsp;aprendizado: <span class="green">'contínuo'</span>,</div>
+            <div>&nbsp;&nbsp;status: <span class="white">'construindo'</span></div>
+            <div>};</div>
+            <br>
+            <div><span class="purple">while</span> (sempreAprendendo) {</div>
+            <div>&nbsp;&nbsp;criar();</div>
+            <div>&nbsp;&nbsp;testar();</div>
+            <div>&nbsp;&nbsp;evoluir();</div>
+            <div>}</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre" class="reveal">
+        <div class="section-head"><div class="eyebrow">01 / Sobre mim</div><h2>Tecnologia, prática e evolução.</h2></div>
+        <div class="about-grid">
+          <div class="panel">
+            <p>Atualmente curso Análise e Desenvolvimento de Sistemas e estudo desenvolvimento Full Stack. Minha formação combina aprendizado acadêmico, cursos livres e projetos práticos, nos quais venho desenvolvendo minha lógica de programação e minha capacidade de construir soluções.</p>
+            <br>
+            <p>Tenho interesse em desenvolvimento web, back-end e ciência de dados. Estou em busca de oportunidades para aprender com equipes, contribuir com projetos reais e crescer como profissional da tecnologia.</p>
+          </div>
+          <div class="facts">
+            <div class="fact"><strong>ADS</strong><span>Graduação em andamento</span></div>
+            <div class="fact"><strong>Full Stack</strong><span>Formação complementar</span></div>
+            <div class="fact"><strong>Back-end</strong><span>Node.js, Express e MongoDB</span></div>
+            <div class="fact"><strong>Data Science</strong><span>Python e fundamentos de ML</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="habilidades" class="reveal">
+        <div class="section-head"><div class="eyebrow">02 / Habilidades</div><h2>Ferramentas que venho estudando.</h2><p>Conhecimentos em desenvolvimento e dados construídos por meio de cursos, exercícios e projetos. Os níveis evoluem conforme ganho experiência prática.</p></div>
+        <div class="skills">
+          <div class="skill"><b>HTML5 & CSS3</b><small>Estrutura, estilização e layouts responsivos</small></div>
+          <div class="skill"><b>JavaScript</b><small>Lógica, DOM e fundamentos da linguagem</small></div>
+          <div class="skill"><b>React</b><small>Componentes, props e hooks básicos</small></div>
+          <div class="skill"><b>Node.js & Express</b><small>APIs REST e organização de rotas</small></div>
+          <div class="skill"><b>MongoDB</b><small>Banco de dados e integração com API</small></div>
+          <div class="skill"><b>Python</b><small>Programação e manipulação de dados</small></div>
+          <div class="skill"><b>SQL</b><small>Fundamentos de banco de dados</small></div>
+          <div class="skill"><b>Machine Learning</b><small>Scikit-learn e modelos introdutórios</small></div>
+        </div>
+      </section>
+
+      <section id="projetos" class="reveal">
+        <div class="section-head"><div class="eyebrow">03 / Projetos</div><h2>Aprendizado colocado em prática.</h2><p>Alguns trabalhos que representam minha evolução técnica. Novos projetos serão adicionados conforme forem finalizados.</p></div>
+        <div class="projects">
+          <article class="project">
+            <div class="tag">Back-end · Node.js</div>
+            <h3>API de gerenciamento de produtos</h3>
+            <p>Projeto de API desenvolvido com Node.js, Express e MongoDB, com rotas para produtos, usuários e autenticação. Inclui estudos de middlewares, JWT, validação e organização da aplicação.</p>
+            <a href="https://github.com/nicolassantana0505/Meu-Projeto-de-Produtos-API" target="_blank" rel="noopener">Ver repositório no GitHub ↗</a>
+          </article>
+          <article class="project">
+            <div class="tag">Data Science · Python</div>
+            <h3>Estudos de Machine Learning</h3>
+            <p>Exercícios práticos com pandas e scikit-learn, explorando classificação, regressão, KNN, árvores de decisão, Random Forest e clusterização com K-Means.</p>
+            <a href="https://github.com/nicolassantana0505" target="_blank" rel="noopener">Explorar meu GitHub ↗</a>
+          </article>
+          <article class="project">
+            <div class="tag">Front-end · React</div>
+            <h3>Aplicações e componentes web</h3>
+            <p>Prática de construção de interfaces com React, componentes reutilizáveis, props, useState, useEffect e navegação entre páginas.</p>
+            <a href="https://github.com/nicolassantana0505" target="_blank" rel="noopener">Ver outros projetos ↗</a>
+          </article>
+          <article class="project">
+            <div class="tag">Em evolução</div>
+            <h3>Próximos projetos</h3>
+            <p>Este espaço pode receber aplicações completas, projetos publicados e estudos que demonstrem novas habilidades e soluções desenvolvidas.</p>
+            <a href="#contato">Entre em contato ↗</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="trajetoria" class="reveal">
+        <div class="section-head"><div class="eyebrow">04 / Trajetória</div><h2>Minha jornada até aqui.</h2></div>
+        <div class="timeline">
+          <div class="timeline-item"><time>FORMAÇÃO ATUAL</time><div><strong>Análise e Desenvolvimento de Sistemas</strong><p>Graduação em andamento, com foco na construção de uma base sólida em tecnologia e desenvolvimento de software.</p></div></div>
+          <div class="timeline-item"><time>FORMAÇÃO COMPLEMENTAR</time><div><strong>Programação Full Stack — Codi Academy</strong><p>Estudos de desenvolvimento front-end e back-end, com prática em tecnologias web.</p></div></div>
+          <div class="timeline-item"><time>CURSO CONCLUÍDO</time><div><strong>Data Science — Codi Academy</strong><p>Formação em fundamentos de Dados, IA, ML em Pyton.</p></div></div>
+          <div class="timeline-item"><time>CURSO CONCLUÍDO</time><div><strong>Python — Open Academy Santander</strong><p>Formação em fundamentos de programação utilizando Python.</p></div></div>
+          <div class="timeline-item"><time>EXPERIÊNCIA PROFISSIONAL</time><div><strong>Codeme Construções em Aço — Ajudante de Fabricação</strong><p>Experiência profissional em ambiente de fabricação, desenvolvendo responsabilidade, colaboração e disciplina no trabalho.</p></div></div>
+          <div class="timeline-item"><time>EXPERIÊNCIA PROFISSIONAL</time><div><strong>Codi Academy — Estagiário e Professor </strong><p>Ensinando Programação e contruibuindo em projetos reais.</p></div></div>
+        </div>
+      </section>
+
+    
+     
+<section id="contato" class="reveal">
+  <div class="contact">
+
+    <div class="contact-image">
+      <img 
+        src="./img/minha-foto.jpeg" 
+        alt="Foto de Nicolas Sant'Ana"
+        style="width: 190px; height: 220px; object-fit: cover; border-radius: 15px; border: 2px solid #8b7cff;"
+      >
+    </div>
+
+    <div>
+      <div class="eyebrow">05 / Contato</div>
+      <h2>Vamos construir algo juntos?</h2>
+      <p>
+        Estou aberto a oportunidades de estágio, vagas júnior,
+        projetos colaborativos e conexões com profissionais
+        da área de tecnologia.
+      </p>
+    </div>
+
+    <div class="actions">
+     <a 
+  class="btn primary"
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=santananick2015@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Enviar e-mail ↗
+</a>
+
+      <a 
+        class="btn secondary" 
+        href="https://www.linkedin.com/in/nícolas-sant-ana/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn ↗
+      </a>
+    </div>
+
+  </div>
+</section>
+
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> Nicolas Sant'Ana</span><span>Feito com HTML, CSS e JavaScript.</span></div></footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menu = document.getElementById('menu');
+    const links = document.getElementById('navlinks');
+    menu.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(link => link.addEventListener('click', () => links.classList.remove('open')));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+  </script>
+</body>
+</html>
